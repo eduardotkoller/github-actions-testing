@@ -2,7 +2,7 @@ name: Build, test & deploy to production
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
 
 jobs:
   test:
@@ -82,5 +82,5 @@ jobs:
             dist
 
       - name: Deploys to production
-        run: echo "deploying to production... (replace with deploy commands)"
+        run: echo "deploying to dev... (replace with deploy commands)"
       

@@ -1,8 +1,8 @@
-name: Build, test & deploy to production
+name: Build, test & deploy to review
 
 on:
-  push:
-    branches: [main]
+  pull_request:
+    types: [opened, reopened, synchronize]
 
 jobs:
   test:
@@ -46,6 +46,8 @@ jobs:
     name: Build & Deploy
     needs: [test]
     runs-on: ubuntu-latest
+    env:
+      ENV_ID: ${{ github.head_ref }}
     steps:
       - name: Checkouts repository
         uses: actions/checkout@v2
@@ -82,5 +84,6 @@ jobs:
             dist
 
       - name: Deploys to production
-        run: echo "deploying to production... (replace with deploy commands)"
+        run: |
+          echo "deploying to $ENV_ID... (replace with deploy commands)"
       
