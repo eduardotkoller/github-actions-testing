@@ -12,15 +12,15 @@ jobs:
       ENV_ID: ${{ github.head_ref }}
     steps:
       - name: Checkouts repository
-        if: github.head_ref !== 'main' && github.head_ref !== 'dev'
+        if: github.head_ref != 'main' && github.head_ref != 'dev'
         uses: actions/checkout@v2
 
       - name: Setups node and npm
-        if: github.head_ref !== 'main' && github.head_ref !== 'dev'
+        if: github.head_ref != 'main' && github.head_ref != 'dev'
         uses: actions/setup-node@v1
 
       - name: Cache node modules
-        if: github.head_ref !== 'main' && github.head_ref !== 'dev'
+        if: github.head_ref != 'main' && github.head_ref != 'dev'
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
@@ -34,11 +34,11 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
-        if: github.head_ref !== 'main' && github.head_ref !== 'dev'
+        if: github.head_ref != 'main' && github.head_ref != 'dev'
         run: echo "installing dependencies... (replace with npm install)"
 
       - name: Destroys review environment
-        if: github.head_ref !== 'main' && github.head_ref !== 'dev'
+        if: github.head_ref != 'main' && github.head_ref != 'dev'
         run: |
           echo "sending destroy signal to $ENV_ID... (replace with real commands)"
       
