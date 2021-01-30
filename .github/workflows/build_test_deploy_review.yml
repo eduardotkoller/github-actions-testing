@@ -7,6 +7,7 @@ on:
 jobs:
   test:
     name: Test
+    if: github.head_ref != 'main' && github.head_ref != 'dev'
     runs-on: ubuntu-latest
     steps:
       - name: Checkouts repository
@@ -44,6 +45,7 @@ jobs:
 
   build_and_deploy:
     name: Build & Deploy
+    if: github.head_ref != 'main' && github.head_ref != 'dev'
     needs: [test]
     runs-on: ubuntu-latest
     env:
